@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX 5 
+
+
+struct Stack {
+    int arr[MAX];
+    int top; 
+};
+
+ 
+void initStack(struct Stack *s) {
+    s->top = -1; 
+}
+
+
+int isFull(struct Stack *s) {
+    return s->top == MAX - 1; 
+}
+
+
+int isEmpty(struct Stack *s) {
+    return s->top == -1; 
+}
+
+
+void push(struct Stack *s, int value) {
+    if (isFull(s)) {
+        printf("Stack Overflow! Cannot push %d\n", value);
+    } else {
+        s->arr[++(s->top)] = value; 
+        printf("Pushed %d onto the stack\n", value);
+    }
+}
+
+
+void display(struct Stack *s) {
+    if (isEmpty(s)) {
+        printf("Stack is empty!\n");
+    } else {
+        printf("Stack contents: ");
+        for (int i = 0; i <= s->top; i++) {
+            printf("%d ", s->arr[i]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    struct Stack s;
+    initStack(&s); 
+
+    push(&s, 10);  
+    push(&s, 20);
+    push(&s, 30);
+
+    display(&s); 
+
+    return 0;
+}
